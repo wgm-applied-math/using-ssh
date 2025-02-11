@@ -71,7 +71,7 @@ You should see at least the two files `github_ed25519` and `github_ed25519.pub`.
 
 ![Screenshot-Windows-ssh-keygen](Screenshot-Windows-ssh-keygen.png "Screenshot of ssh-keygen on Windows")
 
-![Screenshot-OSX-ssh-keygen](Screenshot-OSX-ssh-keygen "Screenshot of ssh-keygen on OSX")
+![Screenshot-OSX-ssh-keygen](Screenshot-OSX-ssh-keygen.png "Screenshot of ssh-keygen on OSX")
 
 ## What to do with the key pair
 
