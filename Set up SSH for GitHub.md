@@ -99,6 +99,8 @@ to display it.
 The terminal app will let you select that text and copy it.
 You can also open the file in any text editor and copy it.
 
+![Screenshot-OSX-copy-public-key](Screenshot-OSX-copy-public-key.png "Screenshot of terminal with public key displayed and selected")
+
 To give the public key to GitHub, sign in to your account.
 Click your avatar in the upper right, and go to the Settings item in the menu.
 
