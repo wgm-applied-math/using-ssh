@@ -31,7 +31,7 @@ Then launch it.
 
 A terminal app and SSH should be installed already.
 
-![Screenshot-OSX-launch-terminal](Screenshot-OSX-launch-terminal "Screenshot of launching the Mac OS/X terminal")
+![Screenshot-OSX-launch-terminal](Screenshot-OSX-launch-terminal.png "Screenshot of launching the Mac OS/X terminal")
 
 ### Linux
 
