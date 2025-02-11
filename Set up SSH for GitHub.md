@@ -134,13 +134,42 @@ Once your key is registered with GitHub, you can use it to make local clones of 
 You can then push changes to GitHub, and you only have to type the password to unlock your private key every once in a while.
 The key should be used automatically in any application that uses Git.
 
-### Using `git` directly to create a local clone
-
-To make a local clone using `git` from the command line, go to the repository in GitHub, click the "Code" button to open the panel, make sure you're seeing the "Local" tab, and click the `SSH` subtab.
-Click the copy icon (looks like two squares) to copy the text of the URL in SSH form that you see in the text box.
+You often need the SSH URL for a repository instead of the usual `https:` URL.
+To get it, open the repository in GitHub.
+Click the "Code" button to open the panel, make sure you're seeing the "Local" tab, and click the `SSH` subtab.
+Click the copy icon (looks like two squares) to copy the text of the SSH URL form that you see in the text box.
+It has the form `git@github.com:<repository-name>.git`.
 
 ![Screenshot-GitHub-copy-repo-ssh-url](Screenshot-GitHub-copy-repo-ssh-url.png "Screenshot of how to copy the SSH URL")
 
+### Using GitHub Desktop to create a local clone
+
+Sign in to GitHub Desktop.
+Find your repository.
+Or, click on the tab to enter a URL, and paste the SSH URL copied from the GitHub web page.
+
+### Using GitHub Desktop to update a local clone's upstream URL
+
+If you created a local clone of a repository using the `https:` URL, some programs, such as MATLAB, might still try to use GitHub password authentication for pushing commits.
+You can switch the repository over to using the SSH URL like this.
+
+In GitHub Desktop, open the "Repository" menu and choose "Repository settings...".
+
+Go to GitHub on the web and copy the SSH URL for your repository.
+In the Remote panel, where it says "Primary remote repository (origin) URL",
+
+![Screenshot-GitHub-Desktop-old-url](Screenshot-GitHub-Desktop-old-url.png "Screenshot of repository settings with the old URL")
+
+remove the `https://...` text and paste the SSH URL `git@...`.
+
+![Screenshot-GitHub-Desktop-new-url](Screenshot-GitHub-Desktop-new-url.png "Screenshot of repository settings with the new URL")
+
+Then click "Save."
+
+
+### Using `git` directly to create a local clone
+
+To make a local clone using `git` from the command line, go to the repository in GitHub and copy the SSH URL.
 At the command line, use `cd` to go to the folder where you want to create the local clone.
 Then type
 
@@ -150,8 +179,23 @@ git clone <paste ssh-url here>
 
 and press enter.
 
-### Using GitHub desktop to create a local clone
+### Register SSH keys with MATLAB
 
-Sign in to GitHub desktop.
-Find your repository.
-If needed, you can click on the tab to enter a URL, and paste the SSH URL copied from the GitHub web page.
+MATLAB sometimes doesn't pick up on the correct key pair to use.
+If it gives you error messages about keys not being set up, here's what to do.
+
+Figure out where your key files are.
+This should be your home directory, which usually looks like
+`C:\Users\<name>\.ssh\` on Windows,
+`/Users/<name>/.ssh` on OS/X,
+and
+`/home/<name>/.ssh` on Linux.
+
+In the MATLAB command window, enter
+
+```
+git = settings().matlab.sourcecontrol.git;
+git.PrivateKeyFile.PersonalValue = "<your-ssh-directory>/github_ed25519";
+git.PublicKeyFile.PersonalValue = "<your-ssh-directory>/github_ed25519.pub";
+git.KeyHasPassphrase.PersonalValue = true;
+```
